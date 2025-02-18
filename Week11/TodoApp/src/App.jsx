@@ -1,3 +1,4 @@
+import { RecoilRoot } from "recoil"
 import Todo from "./Component/Todo"
 
 
@@ -6,7 +7,8 @@ function App() {
 
   return (
    <>
-   <Todo/>
+   <RecoilRoot>   <Todo/>
+   </RecoilRoot>
    </>
   )
 }
