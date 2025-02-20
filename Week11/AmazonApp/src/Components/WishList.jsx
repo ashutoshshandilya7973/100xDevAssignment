@@ -1,7 +1,9 @@
 import React from 'react'
 import Card from './Card'
-
+import { wishItemState } from '../Stores/wishItemState'
+import { useRecoilValue } from 'recoil';
 const WishList = () => {
+    const wishItems = useRecoilValue(wishItemState);
   return (
     <div className="h-screen flex">
         <div className="h-full w-[20%] text-white border-red-950 border-solid border">
@@ -12,8 +14,8 @@ const WishList = () => {
         </div>
         <div className="h-full w-full text-white border-red-950 border-solid border overflow-y-auto flex flex-wrap gap-4 p-4">
             {
-                Array(10).fill(0).map((item, index) => (
-                    <Card key={index}/>
+                wishItems.map((item) => (
+                    <Card key={item.id} item={item} />
                 ))
             }
         </div>

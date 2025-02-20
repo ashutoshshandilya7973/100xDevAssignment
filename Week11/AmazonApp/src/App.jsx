@@ -11,8 +11,8 @@ function App() {
   return (
   <>
       <Navbar/>
-      {/* <AmazonCart/> */}
-      <WishList/>
+      <AmazonCart/>
+      {/* <WishList/> */}
       {/* <Card/> */}
   </>
   )
