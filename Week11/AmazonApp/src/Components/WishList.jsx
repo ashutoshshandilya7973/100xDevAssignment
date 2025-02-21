@@ -4,6 +4,7 @@ import { wishItemState } from '../Stores/wishItemState'
 import { useRecoilValue } from 'recoil';
 const WishList = () => {
     const wishItems = useRecoilValue(wishItemState);
+    // console.log(wishItems)
   return (
     <div className="h-screen flex">
         <div className="h-full w-[20%] text-white border-red-950 border-solid border">
@@ -14,9 +15,9 @@ const WishList = () => {
         </div>
         <div className="h-full w-full text-white border-red-950 border-solid border overflow-y-auto flex flex-wrap gap-4 p-4">
             {
-                wishItems.map((item) => (
-                    <Card key={item.id} item={item} />
-                ))
+                
+                    <Card  wishItems={wishItems} />
+                
             }
         </div>
     </div>

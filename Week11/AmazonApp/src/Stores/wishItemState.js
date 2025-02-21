@@ -1,6 +1,6 @@
 import {atom} from 'recoil';
 
-export const wishItemState = atom({
+ const wishItemState = atom({
     key: 'wishItemState',
     default: [{
         id: 1,
@@ -54,3 +54,4 @@ export const wishItemState = atom({
         price: 11.99,
     }]
 })
+export {wishItemState}
