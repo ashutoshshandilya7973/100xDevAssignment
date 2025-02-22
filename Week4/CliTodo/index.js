@@ -33,32 +33,46 @@ program
         console.log("Todo added successfully!");
     });
 
-    program
+program
     .command("complete")
     .description("Mark a task as completed")
     .argument("<id>", "Task ID to mark as completed")
     .action((id) => {
-      const taskId = Number(id); 
-      let data = fs.readFileSync("todo.json", "utf-8");
-      let newData = data.trim() ? JSON.parse(data) : [];
-  
-      let taskFound = false;
-      for (let i = 0; i < newData.length; i++) {
-        if (newData[i].id === taskId) {
-          newData[i].isComplete = true;
-          taskFound = true;
-          break;
+        const taskId = Number(id);
+        let data = fs.readFileSync("todo.json", "utf-8");
+        let newData = data.trim() ? JSON.parse(data) : [];
+
+        let taskFound = false;
+        for (let i = 0; i < newData.length; i++) {
+            if (newData[i].id === taskId) {
+                newData[i].isComplete = true;
+                taskFound = true;
+                break;
+            }
         }
-      }
-  
-      if (!taskFound) {
-        console.log(`Task with ID ${taskId} not found.`);
-        return;
-      }
-  
-      fs.writeFileSync("todo.json", JSON.stringify(newData, null, 2), "utf-8");
-      console.log("Task marked as completed successfully!");
+
+        if (!taskFound) {
+            console.log(`Task with ID ${taskId} not found.`);
+            return;
+        }
+
+        fs.writeFileSync("todo.json", JSON.stringify(newData, null, 2), "utf-8");
+        console.log("Task marked as completed successfully!");
     });
 
+program
+    .command("deleteTodo")
+    .description("this command will delete the specific todo from the list")
+    .argument("<text>", "this is the id of the todo which we are gonna deleted")
+    .action((text) => {
+          const id=Number(text);
+          const data=fs.readFileSync("todo.json","utf-8");
+          let newData = data.trim() ? JSON.parse(data) : [];
+          let todo=newData.filter((data)=>data.id!=id);
+        
+          fs.writeFileSync("todo.json",JSON.stringify(todo,null,2),"utf-8");
+          console.log("specific todo has been deleted");
+          
+    })
 
 program.parse(process.argv);
